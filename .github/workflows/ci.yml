@@ -18,12 +18,7 @@ jobs:
           working-directory: remote-echidna
       - name: Terraform Init
         run: terraform init
-        with:
-          working-directory: remote-echidna
       - name: Terraform Apply
-
-        with:
-          working-directory: remote-echidna
         env:
           project: "echidna"
           project_git_url: "https://github.com/${{github.repository}}.git"
