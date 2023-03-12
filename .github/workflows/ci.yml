@@ -30,9 +30,8 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
-      - run: tree
       - name: Provision
-        run: ./remote-echidna/scripts/provision.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }}
+        run: ./scripts/provision.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }}
       - name: Terraform Init
         run: terraform init
       - name: Terraform Apply
@@ -43,5 +42,5 @@ jobs:
           EC2_INSTANCE_ID=$(terraform output ec2_instance_id)
           echo "::set-output name=EC2_INSTANCE_ID::$EC2_INSTANCE_ID"
       - name: Provisioned
-        run: ./remote-echidna/scripts/provisioned.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }} ${{ steps.apply.outputs.EC2_INSTANCE_ID }}
+        run: ./scripts/provisioned.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }} ${{ steps.apply.outputs.EC2_INSTANCE_ID }}
 
