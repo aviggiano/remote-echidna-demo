@@ -1,4 +1,4 @@
-name: CI
+name: Push
 
 on: [pull_request, push]
 
@@ -34,6 +34,8 @@ jobs:
         run: ./scripts/provision.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }}
       - name: Terraform Init
         run: terraform init
+      - name: Destroy previous instance
+        run: terraform destroy -target aws_instance.ec2_instance
       - name: Terraform Apply
         id: apply
         run: |
