@@ -50,7 +50,7 @@ jobs:
           terraform init
           terraform apply -var-file ${{ env.project }}.tfvars -no-color -input=false -auto-approve
           EC2_INSTANCE_ID=$(terraform output ec2_instance_id)
-          echo "{EC2_INSTANCE_ID}={$EC2_INSTANCE_ID}" >> $GITHUB_OUTPUT
+          echo "EC2_INSTANCE_ID=${EC2_INSTANCE_ID}" >> $GITHUB_OUTPUT
       - name: Provisioned
         run: ./scripts/provisioned.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }} ${{ steps.apply.outputs.EC2_INSTANCE_ID }}
 
