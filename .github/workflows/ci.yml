@@ -30,6 +30,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
+      - run: tree
       - name: Provision
         run: ./remote-echidna/scripts/provision.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }}
       - name: Terraform Init
