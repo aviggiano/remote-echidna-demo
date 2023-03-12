@@ -32,12 +32,12 @@ jobs:
           terraform_wrapper: false
       - name: Create tfvars file
         run: |
-          echo "project = ${{ env.project }}" >> ${{ env.project }}.tfvars
-          echo "project_git_url = ${{ env.project_git_url }}" >> ${{ env.project }}.tfvars
-          echo "project_git_checkout = ${{ env.project_git_checkout }}" >> ${{ env.project }}.tfvars
-          echo "s3_bucket = ${{ env.s3_bucket }}" >> ${{ env.project }}.tfvars
-          echo "ec2_instance_key_name = ${{ env.ec2_instance_key_name }}" >> ${{ env.project }}.tfvars
-          echo "run_tests_cmd = ${{ env.run_tests_cmd }}" >> ${{ env.project }}.tfvars
+          echo "project = '${{ env.project }}'" >> ${{ env.project }}.tfvars
+          echo "project_git_url = '${{ env.project_git_url }}'" >> ${{ env.project }}.tfvars
+          echo "project_git_checkout = '${{ env.project_git_checkout }}'" >> ${{ env.project }}.tfvars
+          echo "s3_bucket = '${{ env.s3_bucket }}'" >> ${{ env.project }}.tfvars
+          echo "ec2_instance_key_name = '${{ env.ec2_instance_key_name }}'" >> ${{ env.project }}.tfvars
+          echo "run_tests_cmd = '${{ env.run_tests_cmd }}'" >> ${{ env.project }}.tfvars
       - name: Provision
         run: ./scripts/provision.sh ${{ env.s3_bucket }} ${{ env.project_git_checkout }}
       - name: Destroy previous instance
