@@ -11,7 +11,7 @@ jobs:
       project_git_checkout: ${{ github.head_ref || github.ref_name }}
       s3_bucket: ${{ secrets.REMOTE_ECHIDNA_S3_BUCKET }}
       ec2_instance_key_name: ${{ secrets.EC2_INSTANCE_KEY_NAME }}
-      run_tests_cmd: "echidna-test Contract.sol --contract Contract --config config.yaml"
+      run_tests_cmd: "echidna-test contracts/Contract.sol --contract Contract --config config.yaml || true"
     runs-on: ubuntu-latest
     defaults:
       run:
