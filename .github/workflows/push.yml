@@ -3,9 +3,9 @@ name: Push
 on: [pull_request, push]
 
 jobs:
-  remote-echidna:
-    name: Run remote-echidna
-    uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@main
+  deprovision:
+    name: Provision resources
+    uses: aviggiano/remote-echidna/.github/workflows/provision.yml@main
     with:
       project: "remote-echidna-demo"
       project_git_url: "https://github.com/${{github.repository}}.git"
@@ -17,4 +17,16 @@ jobs:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       REMOTE_ECHIDNA_S3_BUCKET: ${{ secrets.REMOTE_ECHIDNA_S3_BUCKET }}
       REMOTE_ECHIDNA_EC2_INSTANCE_KEY_NAME: ${{ secrets.REMOTE_ECHIDNA_EC2_INSTANCE_KEY_NAME }}
+  provision:
+    name: Provision resources
+    uses: aviggiano/remote-echidna/.github/workflows/deprovision.yml@main
+    with:
+      project: "remote-echidna-demo"
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      REMOTE_ECHIDNA_S3_BUCKET: ${{ secrets.REMOTE_ECHIDNA_S3_BUCKET }}
+
+
 
