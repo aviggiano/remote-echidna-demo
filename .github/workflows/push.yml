@@ -5,7 +5,7 @@ on: [pull_request, push]
 jobs:
   provision:
     name: Provision resources
-    uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@v1
+    uses: aviggiano/remote-echidna/.github/workflows/provision.yml@main
     with:
       project: "demo"
       project_git_url: "https://github.com/aviggiano/yield-contracts.git"
