@@ -1,10 +1,17 @@
 name: Push
 
-on: [pull_request, push]
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
 
 jobs:
   remote-echidna:
     name: Remote echidna
+    permissions:
+      pull-requests: write
     uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@main
     with:
       project: "demo"
