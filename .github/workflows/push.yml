@@ -5,6 +5,8 @@ on: [push, pull_request]
 jobs:
   remote-echidna:
     name: Remote echidna
+    permissions:
+      pull-requests: write
     uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@main
     with:
       project: "demo"
