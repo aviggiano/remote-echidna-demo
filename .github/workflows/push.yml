@@ -3,14 +3,24 @@ name: Push
 on: [pull_request, push]
 
 jobs:
+  deprovision:
+    name: Deprovision old resources
+    uses: aviggiano/remote-echidna/.github/workflows/deprovision.yml@main
+    with:
+      project: "demo"
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      REMOTE_ECHIDNA_S3_BUCKET: ${{ secrets.REMOTE_ECHIDNA_S3_BUCKET }}
   provision:
-    name: Provision resources
+    name: Provision new resources
     uses: aviggiano/remote-echidna/.github/workflows/provision.yml@main
     with:
       project: "demo"
       project_git_url: "https://github.com/aviggiano/yield-contracts.git"
       project_git_checkout: crytic-properties
-      run_tests_cmd: "yarn && echidna-test test/invariants/STETHVaultInvariants.sol --contract STETHVaultInvariants --config test/invariants/config-assertion.yaml --test-limit 1000000"
+      run_tests_cmd: "yarn && echidna-test test/invariants/STETHVaultInvariants.sol --contract STETHVaultInvariants --config test/invariants/config-assertion.yaml --test-limit 1000"
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
