@@ -6,8 +6,6 @@ jobs:
   deprovision:
     name: Deprovision old resources
     uses: aviggiano/remote-echidna/.github/workflows/deprovision.yml@main
-    with:
-      project: "demo"
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
