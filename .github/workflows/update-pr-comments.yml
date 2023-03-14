@@ -3,7 +3,7 @@ name: Update PR comments
 on:
   workflow_dispatch:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   update-pr-comments:
