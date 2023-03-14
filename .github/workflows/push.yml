@@ -12,11 +12,11 @@ jobs:
     name: Remote echidna
     permissions:
       pull-requests: write
-    uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@main
+    uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@v2
     with:
       project: "demo"
       project_git_url: "https://github.com/aviggiano/remote-echidna-demo.git"
-      project_git_checkout: main
+      project_git_checkout: ${{ github.head_ref || github.ref_name }}
       run_tests_cmd: "echidna-test contracts/Contract.sol --contract Contract --config config.yaml"
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
