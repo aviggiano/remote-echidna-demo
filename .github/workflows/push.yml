@@ -15,9 +15,9 @@ jobs:
     uses: aviggiano/remote-echidna/.github/workflows/remote-echidna.yml@v2
     with:
       project: "demo"
-      project_git_url: "https://github.com/aviggiano/remote-echidna-demo.git"
-      project_git_checkout: ${{ github.head_ref || github.ref_name }}
-      run_tests_cmd: "echidna-test contracts/Contract.sol --contract Contract --config config.yaml"
+      project_git_url: "https://github.com/aviggiano/yield-contracts.git"
+      project_git_checkout: "feat/new-vaults"
+      run_tests_cmd: "yarn && echidna-test test/invariants/NewVaultInvariants.sol --contract NewVaultInvariants --config test/invariants/config-assertion.yaml --test-limit 100000"
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
